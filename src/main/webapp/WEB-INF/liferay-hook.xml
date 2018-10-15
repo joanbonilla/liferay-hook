@@ -1,0 +1,32 @@
+<?xml version="1.0"?>
+<!DOCTYPE hook PUBLIC "-//Liferay//DTD Hook 6.2.0//EN" "http://www.liferay.com/dtd/liferay-hook_6_2_0.dtd">
+
+<hook>
+
+	<portal-properties>portal.properties</portal-properties>
+
+	<language-properties>i18n/Language.properties</language-properties>
+	<language-properties>i18n/Language_en.properties</language-properties>
+	<language-properties>i18n/Language_es.properties</language-properties>
+
+	<custom-jsp-dir>/WEB-INF/custom_jsps</custom-jsp-dir>
+	<custom-jsp-global>true</custom-jsp-global>
+
+	<indexer-post-processor>
+		<indexer-class-name>com.liferay.portal.model.User</indexer-class-name>
+		<indexer-post-processor-impl>com.altran.liferay.hook.indexer.UserPostIndexer</indexer-post-processor-impl>
+	</indexer-post-processor>
+	
+	<service>
+       <service-type>com.liferay.portal.service.UserLocalService</service-type>
+       <service-impl>com.altran.liferay.hook.service.CustomUserLocalServiceImpl</service-impl>
+    </service>
+    
+    <struts-action>
+		<struts-action-path>/login/login</struts-action-path>
+		<struts-action-impl>
+			com.altran.liferay.hook.action.CustomLoginStrutsPortletAction
+		</struts-action-impl>
+	</struts-action>
+
+</hook>
